@@ -1,0 +1,250 @@
+1st , go to the git hub and create the repository 
+2nd add readme file to it and create repository
+and then come back to the files and 
+click on right or show more options to open gitbush here 
+and then clone it :- git clone http link of the code where in the git hub 
+next cmd and then enter code .
+then vscode will be opend , and then for first we create a virtual environment for , its a separate box where only that project's python packages live
+it protects ur project and keeps things clean.
+for venv we use the command to get that 
+___________________--------------------____________
+python -m venv (edooka name) :- venv and 
+go to the gitignore and then add this venv
+because the venv is a machine - specific and should never be pushed to git hub
+
+1.venv contains thounds of files 
+a venv has 
+. py executables 
+. platform - specific binaries 
+. cached files 
+. installed packages 
+thhis can be 10 - 300 MB 
+github contains only ur soure code , not ur system files
+.. instead of pushing venv ,we push requirements.txt
+___________________----------------------____________
+and ten we have to insall d django 
+command of it :- pip install "django == 5.1.2"
+give it some time to install 
+successfully installed asgiref-3.11.0 django-5.1.2 sqlparse-0.5.3 tzdata-2025.2 it wil be install successfully 
+.....NOW WHAT IS DJANGO .....
+it is a py web framework.
+antey websites create cheyadaniki py lo ready - made system 
+it gives u
+.structure
+.security
+.speed
+.ready-made tools
+so that u dont need to build everything from 0
+
+deniki dj ni use cheystamu ?
+websites , apis , admin panels , backend logic
+dj use ayye real-world examples
+insta , pinterest , mozilla , spotify backend , disqus comments , this all apps use django -style architectures coz its fast scalable and secure
+
+Django miku emi help chestundi?
+1️⃣Fast development
+.Code chala thakkuva
+.Features chala ekkuva
+.Development speed super
+
+2️⃣ Security
+.Django automatically protects:
+.SQL Injection
+.Cross-site scripting
+.Authentication issues
+
+3️⃣ Built-in Admin Panel
+
+One command lo full admin dashboard ready:
+
+python manage.py createsuperuser
+
+4️⃣ MVC/MVT structure
+
+Clean ga modules lo divide chestundi:
+
+Models → Database
+
+Views → Logic
+
+Templates → HTML UI
+
+5️⃣ Database work easy
+
+No need to write SQL manually.
+Python classes tho database tables create avuthayi.
+
+------------Simple example:--------------
+
+Meeru oka student website create chesthunaru.
+Django lo:
+.Model → Student data
+.View → Add/Update/Get students
+.Template → Show students in HTML
+.Inka URL routing, admin, user authentication, forms — anni Django already ready ga isthundi.
+// django mottam mvy format lo unatdi ook
+m model :- used to create tables and coloum names 
+and v :- views in this we get,write,read the table  (handle the table data)
+t - template used to display the data to user ...
+
+________________-------------_____________
+next project start cheyali 
+danni command :- django-admin startproject project_name (krishna) anni ichanu 
+next aa project lopaliki vellali ela cd ./krishna/ ila ((venv) PS D:\django\krishna> )
+ila vastey done
+.. why do we create a project in django
+coz a prj is d main foundation of ur entire website .
+think of it like this :
+a django project = full website skeleton 
+a django app = one feature inside that website
+
+without d proj , django doest know 
+which apps u created 
+which db to use 
+which urls exist 
+how tekplates should load
+how d whole site should run 
+
+so proj  is mandatory its at d top level
+
+Simple Real-Life Example
+
+Let’s say you're building an app like BookMyShow.
+
+Your project name: bookmyshow
+
+Inside this project, you might create apps:
+
+users (login, signup)
+
+movies (movie list)
+
+booking (tickets)
+
+payment (payment gateway)
+
+notifications (emails / SMS)
+
+All these apps must live inside one project.
+_______+++++++++++_________________
+If you don't create a project →
+apps ki home (environment) undadu → site run avadu.
+_________________-------------___________________
+
+
+in project we have some files those are :- asgi.py , settings.py , urls.py , manage.py , wsgi.py ok
+
+manage.py :- u use it to run almost all django commands
+
+run server :- python manage.py runserver
+. create apps
+command :- python manage.py startapp app_name (siva)
+and then do migrations 
+commands :- python msnsge.py makemigrations
+inko command vachi python.manage.py migrate 
+
+..// settings.py
+this is the heart of d project 
+everything imp is stored here:
+installed apps , database settings , templates settings , staic files middleware , secret key , debug key , allowed hosts without settings.py project will not run
+
+..// urls.py :- this is the route manager.
+it decides which url should go to which view ?
+
+..// wsgi.py :- used when deploying ur django proj on a server (apache,nginx , etc.)
+
+django app run avvadani ki server ki needed file
+
+// asgi.py :- used for asynchronous applications
+fastAPi style features :
+.websockets
+.chat apps 
+.realtime notifications
+File	             Use	                          Meaning
+manage.py	       commands	                         Main control
+init.py	           Makes folder a package	         Technical setup
+settings.py	      All project settings	                Heart
+urls.py	            URL routing                        	Map
+wsgi.py	         Deploy on server	                  Production gateway
+asgi.py	          Async support	                      Realtime gateway
+
+soo ippudu app start cheyali ela python manage.py startapp app-name
+ok give it some time to  startapp 
+app create ayipoyindi royyi 
+
+and ippudu ques 
+// asalu app enduku dani valla uses enti ?
+
+.. django app antey enti?
+an app = a small module inside ur project that does one specific feature.
+simple rule:
+one feature = one app
+
+If your website is “movie booking”, you might create apps like:
+
+Feature	               App name
+Users              login/signup	users
+Movies             list	movies
+Booking            tickets	booking
+Payment             gateway	payments
+Reviews & ratings	    reviews
+each app ni separete ga create chestamu..
+
+app lo maanki models.py , views.py , admin.py apps.py
+models.py :- database tables for this app
+views.py :- logic for this app
+admin.py :- admin site lo display
+apps.py :- config for django
+
+Why do we create apps? (Very important)
+1️⃣ To separate features cleanly
+If your whole website code is in one project → total mess.
+Apps divide work like departments in a company.
+2️⃣ To reuse code
+You can take one app and reuse it in another project.
+Ex: auth app
+Django itself gives reusable apps.
+3️⃣ To manage big websites easily
+Facebook, YouTube, Instagram — anni hundreds of apps tho build chesaru.
+Each team works on one app.
+4️⃣ To follow MVC/MVT structure properly
+Models, Views, Templates — app lo group ga untayi.
+⭐ Simple way to remember:
+👉 Project = Entire website
+👉 App = One feature of the website
+
+🧡 Simple Analogy
+
+Oka college (project)
+Andulo:
+Students Dept (app)
+Teachers Dept (app)
+Exams Dept (app)
+Fees Dept (app)
+Each department = separate app.
+College = main project.
+
+
+///next vachi requirements.txt download cheysuku
+ok successfully req cheysukunam
+
+// next vachi app lo views lo functions a rasukuntam only next aa views pyna ippudu manaki urls i mean maan output oka webpage lo ravali antey daniki HttpResponse ni import cheysukuntam 
+<!-- from django.http import HttpResponse --> ila
+
+next vachi
+<!-- return HttpResponse("hello world!") --> ila HttpResponse ivali
+
+aa next vachi project urls lo mana funtion name ilavli and first danini import cheysukovali ela antey ?;;;- 
+from siva_app.views import basic  ila import cheysukovlai , app name.views import function name 
+
+and next path lo maan url lo emi name rayali anukuntunamo addi and algwey fun name ivali 
+like this :[ path("basic/",basic)]
+
+
+next vachi ma app name vachi settngs.py lo instaaled app lo maan app pettali 
+
+aa next vachi kinda commands rayali 
+python manage.py makemigrations
+and python manage,py migrate
+
+//// IPPUDU  RENDAR PROCESS CHUDAM //////
