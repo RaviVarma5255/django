@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path 
-from siva_app.views import basic 
+from siva_app.views import movie_review
+from siva_app.views import cenima
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("basic/",basic)
+    # path("basic/",basic),
+    path("mov/",movie_review),
+    path("movie/",cenima)
 ]

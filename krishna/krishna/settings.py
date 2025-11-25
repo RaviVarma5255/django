@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-v9)cb%u@6loc^xi^5a*zrhghgbsh2(&=!em*(9ws47g%d=sf-u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-czk5.onrender.com']
+# ALLOWED_HOSTS = ['django-czk5.onrender.com'] #prod mode
+ALLOWED_HOSTS=[]  #dev mode
 
 
 # Application definition
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'siva_app.middleware.MovieMiddleware'
 ]
 
 ROOT_URLCONF = 'krishna.urls'
@@ -76,11 +78,14 @@ WSGI_APPLICATION = 'krishna.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'newone',
+        'USER': 'root',
+        'PASSWORD': '5255ravi',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

@@ -248,3 +248,192 @@ python manage.py makemigrations
 and python manage,py migrate
 
 //// IPPUDU  RENDAR PROCESS CHUDAM //////
+
+evng chudam iddi marichipoku 
+
+
+query params __ used to give/provide extra information through url itself while making ahttp request 
+
+syntax for req :- url/?key=value&key1=value1&key2=value2
+
+
+<!-- small project -->
+
+a simple dynamic api - gives response as per the request  
+
+ok now we have to see the models.py for that we have to connected to mysql 
+step 1 ;- install pymysql
+outside d virtual environment
+command :- pip install pymysql==1.1.1
+inside virtual environment
+python -m pip install pysql==1.1.1
+
+setp2 :- configure pymysql for django
+in our __init__py file (inside of our project floder)
+
+import pymysql
+pymysql.istall_as_MySQLdb() // inside the projectt
+
+step3 :- connect mysql shell
+1.open mysql shell : mysqlsh
+2.switch to sql mode : \sql
+3.coonect to mysql server:\connet --mysql root@localhost
+
+step4 : configure db in django
+update db in settings.py
+
+/// 2 terminals tesukunam one for runserver& this is in working mode and other one is for installitions new packages
+
+open my sql shell same as step3 
+create database db_name (newone)
+
+2nd terminal lo cd krishna
+and python manage.py makemigrations 
+and then python manage.py migrate
+done db ni coonect cheysamu and db connect ayindo ledhu ela telustadi daniki oka query undi and alagey oka funtion kuda undi 
+
+
+/// python manage.py shell -c "from django.db import connection; c=connection.cursor(); c.execute('SELECT DATABASE(), VERSION()'); print(c.fetchone())"
+run this command for to check the db will connected or not 
+
+and next go to the models where in app 
+in models we use classes
+class newone(models.Model): 
+u r creating a new class called newone
+. in django , every model is a py class
+. the class name becomes d table name in the db (dj often named it as appname_newone as krishna_newone like this)
+
+2.(models.Models) means ur class inherits from django's main model class
+. this gives ur class all the db - related power
+.it allows dj to:
+.create a db table
+.create coloumns based on fields u add
+give u .save(), .delete(),.objs.all() $ many other features 
+.automatically map py ojbs to db records (ORM)
+
+
+_______++++++++++++++++++___________
+VIEWS LO EE CODE KI ARDHAM 
+def movie_review(request):
+    movie = request.GET.get('movie')
+    date = request.GET.get('date')
+    return JsonResponse({"status":"success" , "result" :{"movie_name":movie,"release_date":date}},status = 200)
+
+def movie_review(request):
+u r defining a view fun in django
+.this fun gets called when ever some1 vivts d url mapped to m_r
+.req contains everthing d client sends 
+.query para  ?movie=RRR&date=2022-03-25
+.Headers
+.Body
+.Method (GET/POST)
+
+
+2️⃣ movie = request.GET.get('movie')
+request.GET → holds all query parameters from the URL.
+.get('movie') → looks for the query parameter named movie.
+Here movie = "RRR"
+If the user does not send the parameter, movie will be None.
+
+3️⃣ date = request.GET.get('date')
+Same thing as above, but now you extract the parameter date.
+From the same URL:
+date = "2022-03-25"
+If not sent, it also becomes None.
+
+4️⃣ return JsonResponse({...}, status=200)
+This sends a JSON response back to the client.
+status=200 → means “OK / Success”. ?????????????????
+______________+++++++++++++++++++++________________
+
+ok now come to models in app
+class newone(models.Model):
+    movie_name = models.CharField(max_length=100,unique=True)
+    ral_date = models.CharField(max_length=100)
+    budget = models.CharField(max_length=100)
+    rating = models.IntegerField(max_length=100)
+here n1 aney dii table name ok
+and miggatavi kinda ani coloumns a and vatti pakkana vii data types 
+next do migrations and migrate  in termi 2
+
+id anney column default ga untadi
+go to workbench and check the table is created r not
+s our table created sucessfully
+
+now we want to inset data in views 
+and do tasks on get put delete tasks
+
+24-11-25 
+today we learn about how to send the data thourgh form-data
+in that we just given key value pair
+and now have to create in app in this we create tge middleware 
+
++++++++++++___________++++++++++
+ChatGPT said:
+
+Think of a decorator in Django as a small “attachment” you place on top of a function to give it extra powers without changing the main function code.
+In views.py, decorators help you add behavior to your views in a clean, controlled way.
+
+Let me break it down simply.
+
+✅ Why we use decorators in Django views?
+1️⃣ To add extra features to a view
+
+For example:
+
+@csrf_exempt → disables CSRF protection for that view
+
+@login_required → only logged-in users can access
+
+@require_POST → only allows POST requests
+
+@permission_required → restricts based on permissions
+
+Instead of writing all this logic inside the function, you attach a decorator on top.
+
+✅ Example with and without decorator
+Without decorator
+def my_view(request):
+    if request.method != "POST":
+        return HttpResponseNotAllowed()
+    if not request.user.is_authenticated:
+        return HttpResponse("Login first")
+    ...
+
+
+Too much code inside the function.
+
+With decorator
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+
+@login_required
+@require_POST
+def my_view(request):
+    ...
+
+
+Cleaner, readable, reusable.
+
+🔒 What about csrf_exempt specifically?
+
+Django automatically protects your site from CSRF attacks.
+But when you're sending API requests using Postman, React, mobile app, JS fetch, Django will block POST request unless you pass CSRF token.
+
+If you don’t want CSRF check for a specific view, you use:
+
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def your_api(request):
+    ...
+
+
+⚠️ Only use it for APIs you trust. Don’t disable CSRF everywhere.
+
+🧠 Short explanation to remember
+
+Decorator = extra feature you add to a view without changing the function itself.
+It keeps your views clean, safe, and organized.
+
+____________++++++++++___________
