@@ -437,3 +437,8 @@ Decorator = extra feature you add to a view without changing the function itself
 It keeps your views clean, safe, and organized.
 
 ____________++++++++++___________
+
+
+28-11-2025
+now we seen request.POST
+if we send data through form data , then we use request.POST and nuv eppudu okati gutu pettuko aa data , i mean column lo aa name istavo views lo post methos lo rasinapudu kuda same names ivvu

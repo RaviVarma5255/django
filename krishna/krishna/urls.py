@@ -16,12 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path 
-from siva_app.views import movie_review
-from siva_app.views import cenima
+# from siva_app.views import movie_review
+# from siva_app.views import start
+# from siva_app.views import mov_info
+from siva_app.views import trying
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path("basic/",basic),
-    path("mov/",movie_review),
-    path("movie/",cenima)
+    # path("mov/",movie_review),
+    # path("movie/",cenima),
+    # path("path/",start),
+    # path("movies/",mov_info),
+    path("new/",trying)
 ]
